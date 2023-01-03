@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="aluno_escola" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e0bc8fe-06f7-43d6-ae4f-84eaa0cdbde7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL Escola"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL Escola"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="580"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="406"/>
 	<style name="Cor do Sexo">
@@ -38,7 +38,8 @@ and ($P{P_TURMA_ID} is null or
 		where at.aluno_id = a.aluno_id
 		and at.turma_id = $P{P_TURMA_ID} 
 	) 
-)]]>
+)
+order by estado asc]]>
 	</queryString>
 	<field name="aluno_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="aluno_id"/>
@@ -100,6 +101,67 @@ and ($P{P_TURMA_ID} is null or
 	<variable name="media_idade" class="java.lang.Integer" calculation="Average">
 		<variableExpression><![CDATA[$V{idade}]]></variableExpression>
 	</variable>
+	<variable name="aluno_id2" class="java.lang.Integer" resetType="Group" resetGroup="Estado" calculation="Count">
+		<variableExpression><![CDATA[$F{aluno_id}]]></variableExpression>
+	</variable>
+	<variable name="media_idade_grupo" class="java.lang.Integer" resetType="Group" resetGroup="Estado" calculation="Average">
+		<variableExpression><![CDATA[$V{idade}]]></variableExpression>
+	</variable>
+	<group name="Estado">
+		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="60" y="0" width="495" height="20" uuid="a93adbf1-5977-4367-ad56-ca96a7343995">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c3828542-787d-4289-81b0-b4249df91b1f"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0" lineColor="#A6A6A6"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="60" height="20" uuid="7504ae0e-bab4-4ff5-9ca7-9a832d82e285"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineColor="#A6A6A6"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Estado:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="52">
+				<textField>
+					<reportElement x="220" y="13" width="100" height="30" uuid="392b8ef9-55fd-49ad-a15f-f65d624497d5"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{aluno_id2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="120" y="13" width="100" height="30" uuid="431c32a7-ff68-480e-996b-9c9d23a81d8b"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de Alunos:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="444" y="13" width="100" height="30" uuid="00a0c52f-b6af-4166-a1ec-00223b3d3dd6"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{media_idade_grupo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="338" y="13" width="100" height="30" uuid="17d2e877-7b80-4ed1-b973-914693f5ee77"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Média de Idades:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -153,22 +215,13 @@ and ($P{P_TURMA_ID} is null or
 				<text><![CDATA[Data de Nascimento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" backcolor="#E6E6E6" uuid="d43f7b76-7a78-4ffb-87f6-8ebb596ec56f">
+				<reportElement mode="Opaque" x="333" y="0" width="177" height="20" backcolor="#E6E6E6" uuid="d43f7b76-7a78-4ffb-87f6-8ebb596ec56f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aaeacd6d-cce1-4ff9-8c48-bfcc5ba4dd3d"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cidade]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="444" y="0" width="66" height="20" backcolor="#E6E6E6" uuid="4e7068cc-243c-4110-9371-52d77069c1f4">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c3828542-787d-4289-81b0-b4249df91b1f"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="510" y="0" width="45" height="20" backcolor="#E6E6E6" uuid="ee11118c-7de7-4ec7-9fdb-6e63def76373">
@@ -205,18 +258,11 @@ and ($P{P_TURMA_ID} is null or
 				<textFieldExpression><![CDATA[$F{data_nascimento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="333" y="0" width="111" height="20" uuid="5a7ba11b-c725-4067-ae40-0d950accce57">
+				<reportElement x="333" y="0" width="177" height="20" uuid="5a7ba11b-c725-4067-ae40-0d950accce57">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aaeacd6d-cce1-4ff9-8c48-bfcc5ba4dd3d"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="444" y="0" width="66" height="20" uuid="a93adbf1-5977-4367-ad56-ca96a7343995">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c3828542-787d-4289-81b0-b4249df91b1f"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="510" y="0" width="45" height="20" uuid="a573b147-e92d-4333-a1e0-cf0a1052514e"/>
@@ -245,28 +291,38 @@ and ($P{P_TURMA_ID} is null or
 	<summary>
 		<band height="64" splitType="Stretch">
 			<textField>
-				<reportElement x="218" y="11" width="100" height="30" uuid="b03b6e32-53c9-41d8-8bc1-8ab5944957e8"/>
+				<reportElement x="220" y="34" width="100" height="30" uuid="b03b6e32-53c9-41d8-8bc1-8ab5944957e8"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{aluno_id1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="115" y="10" width="100" height="30" uuid="96442674-d061-4315-b1f4-08626ba48197"/>
+				<reportElement x="117" y="33" width="100" height="30" uuid="96442674-d061-4315-b1f4-08626ba48197"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total de Alunos:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="440" y="10" width="100" height="30" uuid="81e3fd5d-524c-47b4-8bf8-e6526049f314"/>
+				<reportElement x="442" y="33" width="100" height="30" uuid="81e3fd5d-524c-47b4-8bf8-e6526049f314"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{media_idade}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="338" y="10" width="100" height="30" uuid="69051518-08c2-460e-853a-0a4822a1ec87"/>
+				<reportElement x="340" y="33" width="100" height="30" uuid="69051518-08c2-460e-853a-0a4822a1ec87"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Média de Idades:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="10" width="425" height="23" uuid="3d81fc28-dfe5-47d7-9976-b8894e1cb998"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valores Totais]]></text>
 			</staticText>
 		</band>
 	</summary>

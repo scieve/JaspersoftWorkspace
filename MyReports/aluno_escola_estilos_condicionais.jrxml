@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="aluno_escola" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e0bc8fe-06f7-43d6-ae4f-84eaa0cdbde7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL Escola"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL Escola"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="580"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="406"/>
+	<style name="Cor do Sexo">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{sexo}.equals("M")]]></conditionExpression>
+			<style forecolor="#10BF00" isBold="true"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{sexo}.equals("F")]]></conditionExpression>
+			<style forecolor="#CC04D6" isBold="true"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{sexo}.equals("X")]]></conditionExpression>
+			<style forecolor="#E0B402" isBold="true"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="P_ALUNO_ID" class="java.lang.Integer"/>
 	<parameter name="P_TURMA_ID" class="java.lang.Integer"/>
 	<queryString language="SQL">
@@ -177,7 +191,7 @@ and ($P{P_TURMA_ID} is null or
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="0" width="50" height="20" uuid="5c2505e3-b380-47bf-b284-f03934eb6c33">
+				<reportElement style="Cor do Sexo" x="140" y="0" width="50" height="20" uuid="5c2505e3-b380-47bf-b284-f03934eb6c33">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c47e6db8-4646-4b25-8d2a-33dfac257c90"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>

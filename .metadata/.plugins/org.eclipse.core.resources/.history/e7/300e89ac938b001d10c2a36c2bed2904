@@ -100,9 +100,23 @@ and ($P{P_TURMA_ID} is null or
 				</textElement>
 				<textFieldExpression><![CDATA["concluiu o curso <b>" + $F{nome_disciplina} + "</b>, realizado entre o período " +  new SimpleDateFormat("dd/MM/YYYY").format( $F{data_inicio}) + " e " + new SimpleDateFormat("dd/MM/YYYY").format( $F{data_fim}) + " com carga horária de " + $F{carga_horaria} + "h."]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="140" y="470" width="82" height="82" uuid="868485dd-32fc-4af6-9ab6-5e8c4d4f17bc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+    new com.google.zxing.qrcode.QRCodeWriter().encode(
+        "https://meu-site.com/validar?=" + $F{codigo_validacao},
+        com.google.zxing.BarcodeFormat.QR_CODE, 300, 300
+    )
+)]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="240" y="470" width="380" height="70" uuid="ee448ac8-af11-4110-ba1c-4bb78dd346e0"/>
+				<textFieldExpression><![CDATA["Este certificado pode ser validado no endereço https://url.validacao/ com o código " + $F{codigo_validacao} + "."]]></textFieldExpression>
+			</textField>
 			<textField pattern="dd &apos;de&apos; MMMM &apos;de&apos; yyyy">
-				<reportElement x="370" y="480" width="140" height="30" uuid="af8a3d16-b36a-44e1-a5fe-b90ff9cd65f1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement x="660" y="470" width="140" height="30" uuid="af8a3d16-b36a-44e1-a5fe-b90ff9cd65f1"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

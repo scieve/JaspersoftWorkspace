@@ -103,8 +103,8 @@ group by sexo]]>
 	estado,
 	count(*) qt
 from aluno a
-where ($P{P_ALUNO_ID} is null or a.aluno_id =  $P{P_ALUNO_ID})
-and ($P{P_TURMA_ID} is null or 
+where ($P{P_ALUNO_ID} is null or $P{P_ALUNO_ID} = '' or a.aluno_id =  $P{P_ALUNO_ID})
+and ($P{P_TURMA_ID} is null or $P{P_TURMA_ID} = '' or 
 	exists (
 		select *
 		from aluno_turma at
@@ -115,16 +115,13 @@ and ($P{P_TURMA_ID} is null or
 group by sexo, estado]]>
 		</queryString>
 		<field name="sexo" class="java.lang.String">
-			<property name="com.jaspersoft.studio.field.name" value="sexo"/>
 			<property name="com.jaspersoft.studio.field.label" value="sexo"/>
 		</field>
 		<field name="estado" class="java.lang.String">
-			<property name="com.jaspersoft.studio.field.name" value="estado"/>
 			<property name="com.jaspersoft.studio.field.label" value="estado"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
 		</field>
 		<field name="qt" class="java.lang.Long">
-			<property name="com.jaspersoft.studio.field.name" value="qt"/>
 			<property name="com.jaspersoft.studio.field.label" value="qt"/>
 		</field>
 	</subDataset>

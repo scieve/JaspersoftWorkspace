@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog">
+		<item key="dialogX" value="1920"/>
+		<item key="dialogY" value="0"/>
+		<item key="dialogWidth" value="1920"/>
+		<item key="dialogHeight" value="1078"/>
+		<item key="DIALOG_X_ORIGIN" value="0"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+		<item key="DIALOG_WIDTH" value="1920"/>
+		<item key="DIALOG_HEIGHT" value="1078"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+	</section>
+	<section name="com.jaspersoft.studio.property.descriptor.expression.dialog.JRExpressionEditor">
+		<item key="dialogX" value="2505"/>
+		<item key="dialogY" value="87"/>
+		<item key="dialogWidth" value="750"/>
+		<item key="dialogHeight" value="680"/>
+		<item key="DIALOG_X_ORIGIN" value="585"/>
+		<item key="DIALOG_Y_ORIGIN" value="87"/>
+		<item key="DIALOG_WIDTH" value="750"/>
+		<item key="DIALOG_HEIGHT" value="680"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+	</section>
+	<section name="com.jaspersoft.studio.server.publish.wizard.Publish2ServerWizard">
+		<item key="DIALOG_X_ORIGIN" value="531"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+		<item key="DIALOG_WIDTH" value="858"/>
+		<item key="DIALOG_HEIGHT" value="822"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+	</section>
+	<section name="com.jaspersoft.studio.data.HttpParametersDialog">
+		<item key="dialogX" value="2562"/>
+		<item key="dialogY" value="194"/>
+		<item key="dialogWidth" value="637"/>
+		<item key="dialogHeight" value="519"/>
+		<item key="DIALOG_X_ORIGIN" value="-41"/>
+		<item key="DIALOG_Y_ORIGIN" value="2"/>
+		<item key="DIALOG_WIDTH" value="637"/>
+		<item key="DIALOG_HEIGHT" value="519"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+	</section>
+</section>
